@@ -1,0 +1,97 @@
+/* Base PDF and print styles */
+@page {
+  margin-top: 20mm;
+  margin-right: 15mm;
+  margin-bottom: 20mm;
+  margin-left: 15mm;
+}
+
+html, body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  color: #111;
+}
+
+.spdf-container {
+  direction: ltr;
+}
+
+.spdf-container.rtl {
+  direction: rtl;
+}
+
+.spdf-header, .spdf-footer {
+  text-align: center;
+  font-size: 10pt;
+  color: #666;
+}
+
+.spdf-header {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+}
+.spdf-footer {
+  border-top: 1px solid #ddd;
+  margin-top: 16px;
+  padding-top: 8px;
+}
+
+.spdf-title {
+  font-size: 18pt;
+  font-weight: 700;
+  margin: 0;
+}
+
+.spdf-meta {
+  font-size: 10pt;
+  color: #777;
+  margin-top: 4px;
+}
+
+.spdf-featured {
+  margin: 16px 0;
+  text-align: center;
+}
+
+.spdf-featured img {
+  max-width: 100%;
+  height: auto;
+}
+
+.spdf-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.spdf-toc {
+  border: 1px solid #eee;
+  padding: 12px;
+  margin: 16px 0;
+  background: #fafafa;
+}
+
+.spdf-toc-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.spdf-toc ul { list-style: none; padding-left: 0; }
+.spdf-toc li { margin: 4px 0; }
+.spdf-toc li.level-h2 { margin-left: 12px; }
+.spdf-toc li.level-h3 { margin-left: 24px; }
+
+.spdf-wrap { margin: 1.5rem 0; }
+.spdf-button {
+  display: inline-block;
+  background: #111;
+  color: #fff !important;
+  padding: .6rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+@media print {
+  a[href]:after { content: "" !important; }
+  .spdf-button { display: none; }
+}
