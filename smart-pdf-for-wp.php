@@ -1,17 +1,17 @@
 <?php
 /**
- * Plugin Name: Smart PDF for WP (Lite)
+ * Plugin Name: Smart PDF for WP (Enhanced)
  * Plugin URI: https://example.com/smart-pdf-for-wp
- * Description: Generate clean, styled PDFs of posts, pages, and custom post types. Uses server-side Dompdf if available, otherwise a reliable print-to-PDF fallback.
- * Version: 1.0.0
- * Author: Your Team
+ * Description: Generate clean, styled PDFs of posts, pages, and custom post types with enhanced features. Auto-downloads PDFs, includes site logo, preserves page styles.
+ * Version: 1.1.2
+ * Author: Sourabh
  * License: GPL-2.0-or-later
  * Text Domain: smart-pdf-for-wp
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'SPDF_VERSION', '1.0.0' );
+define( 'SPDF_VERSION', '1.1.2' );
 define( 'SPDF_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SPDF_URL', plugin_dir_url( __FILE__ ) );
 
@@ -29,4 +29,3 @@ register_activation_hook( __FILE__, function(){
 register_deactivation_hook( __FILE__, function(){
     \SPDF\Plugin::instance()->deactivate();
 } );
-

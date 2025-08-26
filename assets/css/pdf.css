@@ -1,97 +1,250 @@
-/* Base PDF and print styles */
+/* Enhanced PDF and print styles */
 @page {
-  margin-top: 20mm;
-  margin-right: 15mm;
-  margin-bottom: 20mm;
-  margin-left: 15mm;
+    margin-top: 20mm;
+    margin-right: 15mm;
+    margin-bottom: 20mm;
+    margin-left: 15mm;
 }
-
-html, body {
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-  font-size: 12pt;
-  line-height: 1.5;
-  color: #111;
-}
-
 .spdf-container {
-  direction: ltr;
+    direction: ltr;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .spdf-container.rtl {
-  direction: rtl;
+    direction: rtl;
 }
 
-.spdf-header, .spdf-footer {
-  text-align: center;
-  font-size: 10pt;
-  color: #666;
-}
-
+/* Enhanced Header Styles */
 .spdf-header {
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 16px;
-  padding-bottom: 8px;
-}
-.spdf-footer {
-  border-top: 1px solid #ddd;
-  margin-top: 16px;
-  padding-top: 8px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
 }
 
+.spdf-header-logo {
+    margin-bottom: 10px;
+}
+
+.spdf-header-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.spdf-header-title {
+    font-size: 14pt;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Enhanced Footer Styles */
+.spdf-footer {
+    text-align: center;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding-top: 10px;
+    font-size: 10pt;
+    color: #666;
+}
+
+/* Content Styles */
 .spdf-title {
-  font-size: 18pt;
-  font-weight: 700;
-  margin: 0;
+    font-size: 20pt;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    color: #111;
+    text-align: center;
 }
 
 .spdf-meta {
-  font-size: 10pt;
-  color: #777;
-  margin-top: 4px;
+    font-size: 10pt;
+    color: #777;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .spdf-featured {
-  margin: 16px 0;
-  text-align: center;
+    margin: 20px 0;
+    text-align: center;
 }
 
 .spdf-featured img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.spdf-content {
+    margin: 20px 0;
 }
 
 .spdf-content img {
-  max-width: 100%;
-  height: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
 }
 
+.spdf-content p {
+    margin-bottom: 12px;
+    text-align: justify;
+}
+
+.spdf-content h1,
+.spdf-content h2,
+.spdf-content h3,
+.spdf-content h4,
+.spdf-content h5,
+.spdf-content h6 {
+    color: #222;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.spdf-content h1 { font-size: 18pt; }
+.spdf-content h2 { font-size: 16pt; }
+.spdf-content h3 { font-size: 14pt; }
+.spdf-content h4 { font-size: 13pt; }
+
+.spdf-content blockquote {
+    border-left: 3px solid #ddd;
+    padding-left: 15px;
+    margin: 15px 0;
+    font-style: italic;
+    color: #555;
+}
+
+.spdf-content ul,
+.spdf-content ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.spdf-content li {
+    margin-bottom: 5px;
+}
+
+/* Enhanced Table of Contents */
 .spdf-toc {
-  border: 1px solid #eee;
-  padding: 12px;
-  margin: 16px 0;
-  background: #fafafa;
+    border: 2px solid #eee;
+    padding: 15px;
+    margin: 20px 0;
+    background: #fafafa;
+    border-radius: 4px;
 }
 
 .spdf-toc-title {
-  font-weight: 700;
-  margin-bottom: 8px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 14pt;
+    color: #333;
 }
 
-.spdf-toc ul { list-style: none; padding-left: 0; }
-.spdf-toc li { margin: 4px 0; }
-.spdf-toc li.level-h2 { margin-left: 12px; }
-.spdf-toc li.level-h3 { margin-left: 24px; }
+.spdf-toc-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
 
-.spdf-wrap { margin: 1.5rem 0; }
+.spdf-toc-list li {
+    margin: 6px 0;
+    line-height: 1.4;
+}
+
+.spdf-toc-list li.level-h2 {
+    margin-left: 15px;
+    font-size: 11pt;
+}
+
+.spdf-toc-list li.level-h3 {
+    margin-left: 30px;
+    font-size: 10pt;
+}
+
+.spdf-toc-list li.level-h4 {
+    margin-left: 45px;
+    font-size: 10pt;
+}
+
+.spdf-toc-list a {
+    color: #444;
+    text-decoration: none;
+    border-bottom: 1px dotted #999;
+}
+
+/* Button Styles */
+.spdf-wrap {
+    margin: 1.5rem 0;
+
+}
+
 .spdf-button {
-  display: inline-block;
-  background: #111;
-  color: #fff !important;
-  padding: .6rem 1rem;
-  border-radius: 6px;
-  text-decoration: none;
+    display: inline-block;
+    background: #a01c40;
+    color: #fff !important;
+    padding: 5px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
 }
+
+.spdf-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Print-specific styles */
 @media print {
-  a[href]:after { content: "" !important; }
-  .spdf-button { display: none; }
+    a[href]:after { 
+        content: "" !important; 
+    }
+
+    .spdf-button { 
+        display: none !important; 
+    }
+
+    .no-print,
+    .elementor-hidden-desktop {
+        display: none !important;
+    }
+
+    /* Page break controls */
+    .spdf-toc {
+        page-break-after: auto;
+    }
+
+    .spdf-content h1,
+    .spdf-content h2 {
+        page-break-after: avoid;
+    }
+
+    .spdf-content h3,
+    .spdf-content h4,
+    .spdf-content h5,
+    .spdf-content h6 {
+        page-break-after: avoid;
+    }
+
+    /* Avoid breaking images */
+    .spdf-content img,
+    .spdf-featured img {
+        page-break-inside: avoid;
+    }
 }
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .spdf-container {
+        padding: 10px;
+    }
+
+    .spdf-button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+

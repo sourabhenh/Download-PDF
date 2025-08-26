@@ -7,7 +7,6 @@ require_once SPDF_PATH . 'includes/class-spdf-admin.php';
 require_once SPDF_PATH . 'includes/class-spdf-renderer.php';
 
 class Plugin {
-
     private static $instance = null;
     public $admin;
     public $renderer;
@@ -34,23 +33,27 @@ class Plugin {
     public function activate() {
         $this->register_rewrite();
         flush_rewrite_rules();
-        // Set defaults if not set
+
+        // Enhanced default settings
         $defaults = [
             'enabled_post_types' => ['post','page'],
-            'button_position'    => 'after',
-            'header_logo_id'     => 0,
-            'header_title'       => get_bloginfo('name'),
-            'footer_text'        => get_bloginfo('name') . ' - ' . home_url(),
-            'paper_size'         => 'A4',
-            'orientation'        => 'portrait',
-            'margins'            => ['top'=>20,'right'=>15,'bottom'=>20,'left'=>15],
-            'include_featured'   => 1,
-            'include_toc'        => 1,
-            'rtl'                => ( is_rtl() ? 1 : 0 ),
-            'custom_css'         => '',
-            'exclude_selectors'  => '.no-print,.elementor-hidden-desktop',
-            'use_server_pdf'     => 1,
+            'button_position' => 'after',
+            'header_logo_id' => 0,
+            'header_title' => get_bloginfo('name'),
+            'footer_text' => get_bloginfo('name') . ' - ' . home_url(),
+            'paper_size' => 'A4',
+            'orientation' => 'portrait',
+            'margins' => ['top'=>20,'right'=>15,'bottom'=>20,'left'=>15],
+            'include_featured' => 1,
+            'include_toc' => 1,
+            'include_page_styles' => 1,
+            'auto_download' => 1,
+            'rtl' => ( is_rtl() ? 1 : 0 ),
+            'custom_css' => '',
+            'exclude_selectors' => '.no-print,.elementor-hidden-desktop,.spdf-button',
+            'use_server_pdf' => 1,
         ];
+
         foreach ($defaults as $k=>$v) {
             if ( get_option("spdf_$k", null) === null ) {
                 update_option("spdf_$k", $v);
@@ -86,8 +89,10 @@ class Plugin {
         global $post;
         if ( ! $post ) return $content;
         if ( ! $this->is_supported_post_type($post->post_type) ) return $content;
+
         $pos = get_option('spdf_button_position','after');
         $button = $this->get_button_html($post->ID);
+
         if ( $pos === 'before' ) return $button . $content;
         if ( $pos === 'after' ) return $content . $button;
         return $content;
@@ -97,7 +102,7 @@ class Plugin {
         $url = add_query_arg( ['spdf'=>1, 'spdf_nonce'=>wp_create_nonce('spdf_'.$post_id)], get_permalink($post_id) );
         wp_enqueue_style('spdf-pdf');
         wp_enqueue_script('spdf-frontend');
-        return '<div class="spdf-wrap"><a class="spdf-button" href="'.esc_url($url).'">'.esc_html__('Download PDF','smart-pdf-for-wp').'</a></div>';
+        return '<div class="spdf-wrap"><a href="'.esc_url($url).'" class="spdf-button">'.esc_html__('Download PDF','smart-pdf-for-wp').'</a></div>';
     }
 
     public function shortcode_button($atts) {
@@ -120,7 +125,7 @@ class Plugin {
         }
 
         $use_server_pdf = intval( get_option('spdf_use_server_pdf', 1 ) );
-        $has_dompdf = class_exists('\Dompdf\Dompdf');
+        $has_dompdf = class_exists('\\Dompdf\\Dompdf');
 
         if ( $use_server_pdf && $has_dompdf ) {
             $this->renderer->render_server_pdf($post);
